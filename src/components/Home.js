@@ -1,6 +1,7 @@
 /* eslint-disable import/no-cycle */
 import { loginGithub } from '../lib/authUser.js';
 import { onNavigate } from '../main.js';
+import { signInGoogle } from "../lib/authUser.js";
 
 export const Home = () => {
   const htmlBase = `
@@ -45,8 +46,11 @@ export const Home = () => {
   btnExistingUser.addEventListener('click', () => onNavigate('/userLogin'));
 
   // Botón para iniciar con cuenta de Google
-  const btnExistingGoogle = divHome.querySelector('#buttonExistingGoogle');
-  btnExistingGoogle.addEventListener('click', () => onNavigate('/login'));
+  const btnExistingGoogle = divHome.querySelector("#buttonExistingGoogle");
+        btnExistingGoogle.addEventListener("click", (e) => {
+        signInGoogle ();
+        onNavigate("/dashboard");
+    });
 
   // Botón para iniciar con cuenta de Twitter
   const btnExistingTwitter = divHome.querySelector('#buttonExistingTwitter');
